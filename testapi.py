@@ -2,9 +2,13 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/bfhl', methods = ['POST'])
+@app.route('/')
+def hello():
+    return "hello"
+
+@app.route('/bfhl', methods = ['POST','GET'])
 def bfhl():
-    if request.method == 'POST':
+    if request.method == 'GET':
         input = request.get_json()
         numbers = input['numbers']
         # numbers=[1,2,3,4,5,6,"3",4]
