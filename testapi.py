@@ -2,29 +2,30 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/bfhl')
+@app.route('/bfhl', methods = ['POST'])
 def bfhl():
-    input = request.get_json()
-    numbers = input['numbers']
-    # numbers=[1,2,3,4,5,6,"3",4]
-    # test(numbers)
-    odd = []
-    even = []
-    is_success = True
-    for i in numbers:
-        try:
-            if int(i) % 2 == 0:
-                even.append(int(i))
-            else:
-                odd.append(int(i))
-        except:
-            is_success = False
-            print("failed")
-            return jsonify(is_success = str(is_success).lower(), user_id = "sarthak_vinchurkar_08082002")
-            # return jsonify({"is_success": str(is_success).lower(), "user_id": "sarthak_vinchurkar_08082002"})
+    if request.method == 'POST':
+        input = request.get_json()
+        numbers = input['numbers']
+        # numbers=[1,2,3,4,5,6,"3",4]
+        # test(numbers)
+        odd = []
+        even = []
+        is_success = True
+        for i in numbers:
+            try:
+                if int(i) % 2 == 0:
+                    even.append(int(i))
+                else:
+                    odd.append(int(i))
+            except:
+                is_success = False
+                # print("failed")
+                return jsonify(is_success = str(is_success).lower(), user_id = "sarthak_vinchurkar_08082002")
+                # return jsonify({"is_success": str(is_success).lower(), "user_id": "sarthak_vinchurkar_08082002"})
 
-    print("printing jsonified doc")
-    return jsonify(is_success = str(is_success).lower(), user_id = "sarthak_vinchurkar_08082002", odd = odd, even = even)
+        # print("printing jsonified doc")
+        return jsonify(is_success = str(is_success).lower(), user_id = "sarthak_vinchurkar_08082002", odd = odd, even = even)
 
 
 def test(numbers):
