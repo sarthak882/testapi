@@ -6,9 +6,9 @@ app = Flask(__name__)
 def hello():
     return "hello"
 
-@app.route('/bfhl', methods = ['POST','GET'])
+@app.route('/bfhl', methods = ['POST'])
 def bfhl():
-    if request.method == 'GET':
+    if request.method == 'POST':
         input = request.get_json()
         numbers = input['numbers']
         # numbers=[1,2,3,4,5,6,"3",4]
