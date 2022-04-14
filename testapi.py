@@ -46,7 +46,7 @@ def ReturnJSON():
   
         return jsonify(data)
 
-# app.run()
+app.run()
 
 # def test(numbers):
 #     odd = []
